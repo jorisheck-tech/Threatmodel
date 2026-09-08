@@ -1,0 +1,768 @@
+{
+  "summary": {
+    "title": "Videoconsult huisarts - Data Flow Diagram",
+    "owner": "",
+    "description": "DFD voor een videoconsult bij de huisarts: de patiënt boekt via een webportaal, belt via een externe videodienst, de huisarts werkt in een landelijk gehost EPD en het recept wordt digitaal naar de apotheek gestuurd. Onbekende technische details zijn niet ingevuld en moeten nog worden geverifieerd.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "cells": [
+          {
+            "position": {
+              "x": 20,
+              "y": 60
+            },
+            "size": {
+              "width": 250,
+              "height": 620
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#777777",
+                "strokeWidth": 2,
+                "strokeDasharray": "10 5"
+              },
+              "label": {
+                "text": "Patiëntomgeving"
+              }
+            },
+            "shape": "trust-boundary-box",
+            "zIndex": -50,
+            "id": "4db1d5ae-4d2d-4bf7-9ea0-21fb4f7663d8",
+            "data": {
+              "name": "Patiëntomgeving",
+              "description": "Externe gebruikersomgeving van de patiënt; apparaat en netwerkdetails zijn nog te verifiëren.",
+              "type": "tm.BoundaryBox",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 320,
+              "y": 60
+            },
+            "size": {
+              "width": 540,
+              "height": 620
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#777777",
+                "strokeWidth": 2,
+                "strokeDasharray": "10 5"
+              },
+              "label": {
+                "text": "Huisartsenpraktijk"
+              }
+            },
+            "shape": "trust-boundary-box",
+            "zIndex": -50,
+            "id": "2c8e9e58-4f71-4866-876d-ea85a660c4e7",
+            "data": {
+              "name": "Huisartsenpraktijk",
+              "description": "Logische beveiligingscontext van de huisartsenpraktijk.",
+              "type": "tm.BoundaryBox",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 910,
+              "y": 60
+            },
+            "size": {
+              "width": 300,
+              "height": 620
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#777777",
+                "strokeWidth": 2,
+                "strokeDasharray": "10 5"
+              },
+              "label": {
+                "text": "Externe videodienst"
+              }
+            },
+            "shape": "trust-boundary-box",
+            "zIndex": -50,
+            "id": "7161a738-16b7-45de-9636-97cdad53d6da",
+            "data": {
+              "name": "Externe videodienst",
+              "description": "Externe leverancier voor het videogesprek; technische koppelingen en opslag zijn nog te verifiëren.",
+              "type": "tm.BoundaryBox",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1260,
+              "y": 60
+            },
+            "size": {
+              "width": 300,
+              "height": 300
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#777777",
+                "strokeWidth": 2,
+                "strokeDasharray": "10 5"
+              },
+              "label": {
+                "text": "Landelijk gehost EPD"
+              }
+            },
+            "shape": "trust-boundary-box",
+            "zIndex": -50,
+            "id": "3027f64c-38fc-4cff-b7aa-1072d71b4004",
+            "data": {
+              "name": "Landelijk gehost EPD",
+              "description": "Extern, landelijk gehost elektronisch patiëntendossier.",
+              "type": "tm.BoundaryBox",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1260,
+              "y": 410
+            },
+            "size": {
+              "width": 300,
+              "height": 270
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#777777",
+                "strokeWidth": 2,
+                "strokeDasharray": "10 5"
+              },
+              "label": {
+                "text": "Apotheek"
+              }
+            },
+            "shape": "trust-boundary-box",
+            "zIndex": -50,
+            "id": "fa204645-9821-4808-9e5f-1deb17d5564c",
+            "data": {
+              "name": "Apotheek",
+              "description": "Externe apotheekomgeving die het digitale recept ontvangt.",
+              "type": "tm.BoundaryBox",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 65,
+              "y": 250
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Patiënt"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "57296a99-0228-4d3f-af62-cd27485eda73",
+            "data": {
+              "name": "Patiënt",
+              "description": "Boekt het videoconsult via het webportaal en neemt deel aan het videogesprek.",
+              "type": "tm.Actor",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false,
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 410,
+              "y": 180
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "text": {
+                "text": "Webportaal"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "shape": "process",
+            "zIndex": 10,
+            "id": "a7cf8d37-1250-4351-9be0-9625a1c1e424",
+            "data": {
+              "name": "Webportaal",
+              "description": "Portaal waarmee de patiënt een videoconsult boekt.",
+              "type": "tm.Process",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 650,
+              "y": 250
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Huisarts"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "shape": "actor",
+            "zIndex": 10,
+            "id": "4ccd5362-4ddf-44c8-9828-c51808f200fd",
+            "data": {
+              "name": "Huisarts",
+              "description": "Voert het videoconsult, werkt het EPD bij en initieert het digitale recept.",
+              "type": "tm.Actor",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false,
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 1000,
+              "y": 250
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "text": {
+                "text": "Videodienst"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "shape": "process",
+            "zIndex": 10,
+            "id": "7ed6a4b7-2310-49ac-b0a3-b567835bfbb9",
+            "data": {
+              "name": "Videodienst",
+              "description": "Externe dienst die het videogesprek tussen patiënt en huisarts faciliteert.",
+              "type": "tm.Process",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1320,
+              "y": 170
+            },
+            "size": {
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Landelijk EPD"
+              },
+              "topLine": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "shape": "store",
+            "zIndex": 10,
+            "id": "1e0eecd0-5443-4baa-aa8b-38d3e35c6693",
+            "data": {
+              "name": "Landelijk EPD",
+              "description": "Landelijk gehost EPD waarin medische gegevens van het consult worden vastgelegd.",
+              "type": "tm.Store",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false,
+              "isALog": false,
+              "storesCredentials": false
+            }
+          },
+          {
+            "position": {
+              "x": 1350,
+              "y": 490
+            },
+            "size": {
+              "width": 120,
+              "height": 120
+            },
+            "attrs": {
+              "text": {
+                "text": "Apotheeksysteem"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "strokeDasharray": null
+              }
+            },
+            "shape": "process",
+            "zIndex": 10,
+            "id": "362fd09a-9dfa-4923-93b1-cf4b61ed20fa",
+            "data": {
+              "name": "Apotheeksysteem",
+              "description": "Systeem van de apotheek dat het digitale recept ontvangt.",
+              "type": "tm.Process",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 20,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Afspraakgegevens",
+              "description": "Gegevens die nodig zijn om het videoconsult via het webportaal te boeken.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isTrustBoundary": false,
+              "isBidirectional": false
+            },
+            "id": "db5904b4-8501-42d9-94c8-e9bcf1f75334",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Afspraakgegevens"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "57296a99-0228-4d3f-af62-cd27485eda73"
+            },
+            "target": {
+              "cell": "a7cf8d37-1250-4351-9be0-9625a1c1e424"
+            },
+            "vertices": [
+              {
+                "x": 300,
+                "y": 220
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 20,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Afspraakbevestiging",
+              "description": "Bevestiging of gegevens van de geboekte afspraak.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isTrustBoundary": false,
+              "isBidirectional": false
+            },
+            "id": "eea41991-047f-4ff2-895c-f8000e11c22a",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Afspraakbevestiging"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "a7cf8d37-1250-4351-9be0-9625a1c1e424"
+            },
+            "target": {
+              "cell": "57296a99-0228-4d3f-af62-cd27485eda73"
+            },
+            "vertices": [
+              {
+                "x": 360,
+                "y": 380
+              },
+              {
+                "x": 250,
+                "y": 380
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 20,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Audio/video patiënt",
+              "description": "Bidirectionele audio- en videodata tijdens het consult. Protocol en eventuele opslag zijn nog te verifiëren.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isTrustBoundary": false,
+              "isBidirectional": true
+            },
+            "id": "728aadaa-e6de-47ba-a118-1d720def0466",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Audio/video patiënt"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "57296a99-0228-4d3f-af62-cd27485eda73"
+            },
+            "target": {
+              "cell": "7ed6a4b7-2310-49ac-b0a3-b567835bfbb9"
+            },
+            "vertices": [
+              {
+                "x": 250,
+                "y": 560
+              },
+              {
+                "x": 940,
+                "y": 560
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 20,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Audio/video huisarts",
+              "description": "Bidirectionele audio- en videodata tijdens het consult. Protocol en eventuele opslag zijn nog te verifiëren.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isTrustBoundary": false,
+              "isBidirectional": true
+            },
+            "id": "3239c878-cfe9-4982-b9d2-f82af2e0884b",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Audio/video huisarts"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "4ccd5362-4ddf-44c8-9828-c51808f200fd"
+            },
+            "target": {
+              "cell": "7ed6a4b7-2310-49ac-b0a3-b567835bfbb9"
+            },
+            "vertices": [
+              {
+                "x": 880,
+                "y": 310
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 20,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Consultverslag / dossierupdate",
+              "description": "Medische gegevens die na of tijdens het consult in het EPD worden vastgelegd.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isTrustBoundary": false,
+              "isBidirectional": false
+            },
+            "id": "5d2c176f-05f8-462b-9bb9-32523e81cc50",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Consultverslag / dossierupdate"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "4ccd5362-4ddf-44c8-9828-c51808f200fd"
+            },
+            "target": {
+              "cell": "1e0eecd0-5443-4baa-aa8b-38d3e35c6693"
+            },
+            "vertices": [
+              {
+                "x": 930,
+                "y": 150
+              },
+              {
+                "x": 1260,
+                "y": 150
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 20,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Patiëntdossier",
+              "description": "Medische dossierinformatie die de huisarts vanuit het EPD raadpleegt.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isTrustBoundary": false,
+              "isBidirectional": false
+            },
+            "id": "b7a85599-5dca-4a91-a829-fbcf075dd763",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Patiëntdossier"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "1e0eecd0-5443-4baa-aa8b-38d3e35c6693"
+            },
+            "target": {
+              "cell": "4ccd5362-4ddf-44c8-9828-c51808f200fd"
+            },
+            "vertices": [
+              {
+                "x": 1200,
+                "y": 110
+              },
+              {
+                "x": 720,
+                "y": 110
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 20,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Digitaal recept",
+              "description": "Aangenomen gegevensstroom voor verzending van het recept vanuit of via het EPD naar de apotheek; exacte technische route nog te verifiëren.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isTrustBoundary": false,
+              "isBidirectional": false
+            },
+            "id": "b09aa6c1-7874-4622-ab2b-cee09876e065",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Digitaal recept"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "1e0eecd0-5443-4baa-aa8b-38d3e35c6693"
+            },
+            "target": {
+              "cell": "362fd09a-9dfa-4923-93b1-cf4b61ed20fa"
+            },
+            "vertices": [
+              {
+                "x": 1450,
+                "y": 390
+              }
+            ]
+          }
+        ],
+        "version": "2.0",
+        "title": "Videoconsult - hoofdgegevensstromen",
+        "description": "DFD met afzonderlijke trust boundaries voor patiënt, huisartsenpraktijk, videodienst, landelijk EPD en apotheek.",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "diagramType": "STRIDE",
+        "id": 0
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 0
+  },
+  "version": "2.0"
+}
