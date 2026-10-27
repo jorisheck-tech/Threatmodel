@@ -1,0 +1,3180 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "NAS n8n - gegevensstromen en toegang",
+    "owner": "Eigen omgeving (gegevens weggelaten)",
+    "description": "Drie rustige diagrammen van het eigen netwerk, de n8n-gegevensstromen en de verschillende toegangsrechten. Gebaseerd op de netwerkschetsen van 26 oktober 2026, pentest-rapport v1.4 en de opgeslagen workflows uit juli 2026. Scenario’s zijn mogelijke risico’s, geen bewijs van een uitgevoerde aanval. Er zijn geen geheimen, persoonlijke adressen, IP-adressen of hostnamen opgenomen. Diagramtekst bevat geen grote koppen.",
+    "id": "NAS-n8n-DFD-2026-10-27-v1.5"
+  },
+  "detail": {
+    "contributors": [],
+    "reviewer": "",
+    "diagrams": [
+      {
+        "title": "01 - Thuisnetwerk",
+        "description": "Netwerkoverzicht volgens de door eigenaar aangeleverde schets van 26 oktober 2026. Extra details over kabels, aansluitingen en wifi zijn nog niet technisch gecontroleerd.",
+        "thumbnail": "",
+        "diagramType": "STRIDE",
+        "id": 0,
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 75,
+              "y": 85
+            },
+            "size": {
+              "width": 2415,
+              "height": 1505
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Thuisnetwerk"
+              }
+            },
+            "id": "f1411864-29ac-58eb-a32e-7479aab7d292",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Thuisnetwerk",
+              "description": "Thuisnetwerk. Dit model toont aansluitingen en instellingen en bewijst geen onbevoegde toegang.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 175,
+              "y": 690
+            },
+            "size": {
+              "width": 230,
+              "height": 115
+            },
+            "attrs": {
+              "text": {
+                "text": "KPN Box 12\nrouter"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "f2a6405b-13ac-5d4a-9840-2853f6a57bfd",
+            "data": {
+              "type": "tm.Process",
+              "name": "KPN Box 12 router",
+              "description": "Router van de thuisverbinding. Geen directe poortdoorschakeling, UPnP of DMZ aangetroffen.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 745,
+              "y": 690
+            },
+            "size": {
+              "width": 235,
+              "height": 115
+            },
+            "attrs": {
+              "text": {
+                "text": "Cisco-switch\nPoE"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "92835617-c15b-5cd2-88b5-7155e9f7ea72",
+            "data": {
+              "type": "tm.Process",
+              "name": "Cisco-switch PoE",
+              "description": "Cisco Catalyst 3560-CG, volgens de eigenaar verbonden met de router en NAS. Poortdetails uit de tekening zijn nog na te kijken.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "0cc1abe3-d6cd-57cc-aa48-37d22ce57947",
+                  "number": 14,
+                  "title": "T-14 Kabel of switch wordt verstoord",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "Iemand kan mogelijk de verbinding onderbreken als fysieke apparatuur toegankelijk is. Kabels en poorten zijn niet ter plaatse gecontroleerd. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Controleer kabelroute, switchpoorten en fysieke toegang voordat maatregelen worden vastgesteld.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1460,
+              "y": 690
+            },
+            "size": {
+              "width": 245,
+              "height": 115
+            },
+            "attrs": {
+              "text": {
+                "text": "Synology NAS"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "4f3e60bc-979d-5c0a-9db4-70ad4607bf2c",
+            "data": {
+              "type": "tm.Process",
+              "name": "Synology NAS",
+              "description": "NAS met Container Manager, Tailscale, n8n, Ollama en Pi-hole.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 2180,
+              "y": 690
+            },
+            "size": {
+              "width": 270,
+              "height": 115
+            },
+            "attrs": {
+              "text": {
+                "text": "NAS-diensten\nn8n / Ollama"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "fadc4e81-87ab-58cb-8411-2436375753f5",
+            "data": {
+              "type": "tm.Process",
+              "name": "NAS-diensten n8n / Ollama",
+              "description": "n8n op poort 5678, Ollama op 32769; op NAS-adressen aangeboden. Dit is niet hetzelfde als directe internettoegang.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "7299a9e4-4a53-5569-983d-f4a8e159e2e5",
+                  "number": 7,
+                  "title": "T-07 Onbedoelde toegang tot NAS-diensten",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "Een open NAS-poort of fout in de toegang kan gegevens blootstellen. Bereikbaarheid is wel gemeten; ongeoorloofde toegang niet. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Beperk NAS-poorten en controleer wie toegang heeft tot n8n en Ollama.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 745,
+              "y": 255
+            },
+            "size": {
+              "width": 235,
+              "height": 112
+            },
+            "attrs": {
+              "text": {
+                "text": "UniFi AP AC LR\nkantoorwifi"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "cf79e1a4-f114-5d48-a1ba-babfdb3ac378",
+            "data": {
+              "type": "tm.Process",
+              "name": "UniFi AP AC LR kantoorwifi",
+              "description": "Kantoorwifi volgens de tekening van de eigenaar; locatie en scheiding nog niet bevestigd.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1460,
+              "y": 255
+            },
+            "size": {
+              "width": 240,
+              "height": 112
+            },
+            "attrs": {
+              "text": {
+                "text": "Eigen laptop\nop kantoorwifi"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "707afeb5-48ea-5a1c-b475-f38277ecc2f1",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Eigen laptop op kantoorwifi",
+              "description": "Eigen laptop op kantoorwifi volgens eigenaarsinformatie.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 175,
+              "y": 1140
+            },
+            "size": {
+              "width": 230,
+              "height": 112
+            },
+            "attrs": {
+              "text": {
+                "text": "AmpliFi Mesh\nthuiswifi"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "dacafcde-4989-5c29-a382-ebe07d58e379",
+            "data": {
+              "type": "tm.Process",
+              "name": "AmpliFi Mesh thuiswifi",
+              "description": "Wifi in huis; DNS-doel volgens het model op Pi-hole ingesteld.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 745,
+              "y": 1140
+            },
+            "size": {
+              "width": 235,
+              "height": 112
+            },
+            "attrs": {
+              "text": {
+                "text": "Apparaten\nop thuiswifi"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "25cb6261-e4fb-5ca4-ac99-08a7613fc405",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Apparaten op thuiswifi",
+              "description": "Wifi-apparaten van het huishouden; andere bewoners vallen buiten de test.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1125,
+              "y": 1040
+            },
+            "size": {
+              "width": 240,
+              "height": 112
+            },
+            "attrs": {
+              "text": {
+                "text": "Dahua-camera’s"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "cba08998-ec6b-589c-a559-688e820b0a7f",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Dahua-camera’s",
+              "description": "Camera’s achter de Cisco-switch volgens de eigenaarsinformatie; niet getest.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1220,
+              "y": 1370
+            },
+            "size": {
+              "width": 240,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Ubiquiti Cloud Key"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "f7ff0f4d-7b78-587b-9162-bddf36173afd",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Ubiquiti Cloud Key",
+              "description": "Cloud Key, volgens de eigenaar bedraad aangesloten; niet getest.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1460,
+              "y": 1140
+            },
+            "size": {
+              "width": 245,
+              "height": 112
+            },
+            "attrs": {
+              "text": {
+                "text": "Pi-hole\nDNS"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "490c81e0-70ad-5595-a382-a2d36f5e74cd",
+            "data": {
+              "type": "tm.Process",
+              "name": "Pi-hole DNS",
+              "description": "Pi-hole draait op de NAS. In het aangeleverde model gebruikt AmpliFi dit als DNS-doel.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "4681377a-71bf-5a56-be0c-84cd71d7df04",
+            "labels": [
+              "N1  Netwerkkabel"
+            ],
+            "source": {
+              "cell": "f2a6405b-13ac-5d4a-9840-2853f6a57bfd"
+            },
+            "target": {
+              "cell": "92835617-c15b-5cd2-88b5-7155e9f7ea72"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N1  Netwerkkabel",
+              "description": "Volgens de eigenaar CAT6 van router naar Cisco-poort 9; nog niet ter plaatse gecontroleerd.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "2b8d1fdc-eeea-5039-ae09-ca6aaf194155",
+            "labels": [
+              "N8  Kabel naar NAS"
+            ],
+            "source": {
+              "cell": "92835617-c15b-5cd2-88b5-7155e9f7ea72"
+            },
+            "target": {
+              "cell": "4f3e60bc-979d-5c0a-9db4-70ad4607bf2c"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N8  Kabel naar NAS",
+              "description": "Switch naar NAS volgens de eigenaarsinformatie; poort 10 nog te bevestigen.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "a58c0110-ebe2-5c80-8078-72ecce6a17a9",
+            "labels": [
+              "Diensten op NAS"
+            ],
+            "source": {
+              "cell": "4f3e60bc-979d-5c0a-9db4-70ad4607bf2c"
+            },
+            "target": {
+              "cell": "fadc4e81-87ab-58cb-8411-2436375753f5"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Diensten op NAS",
+              "description": "n8n en Ollama zijn NAS-diensten; de database is niet rechtstreeks als NAS-poort gepubliceerd.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "e16ef172-a9f1-5941-b9b5-9578ace11fa6",
+            "labels": [
+              "N2  Bedraad"
+            ],
+            "source": {
+              "cell": "f2a6405b-13ac-5d4a-9840-2853f6a57bfd"
+            },
+            "target": {
+              "cell": "dacafcde-4989-5c29-a382-ebe07d58e379"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N2  Bedraad",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "b2d8c091-df9d-5803-9885-b666f7d06bc1",
+            "labels": [
+              "N3  Thuiswifi"
+            ],
+            "source": {
+              "cell": "dacafcde-4989-5c29-a382-ebe07d58e379"
+            },
+            "target": {
+              "cell": "25cb6261-e4fb-5ca4-ac99-08a7613fc405"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N3  Thuiswifi",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "f0d620ba-347c-5054-823e-c89084958291",
+            "labels": [
+              "N4  Kabel / PoE"
+            ],
+            "source": {
+              "cell": "92835617-c15b-5cd2-88b5-7155e9f7ea72"
+            },
+            "target": {
+              "cell": "cf79e1a4-f114-5d48-a1ba-babfdb3ac378"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N4  Kabel / PoE",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "4187a8f2-7698-54c4-af0f-b7dc01bca665",
+            "labels": [
+              "N5  Kantoorwifi"
+            ],
+            "source": {
+              "cell": "cf79e1a4-f114-5d48-a1ba-babfdb3ac378"
+            },
+            "target": {
+              "cell": "707afeb5-48ea-5a1c-b475-f38277ecc2f1"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N5  Kantoorwifi",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": "7 5"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "c282ce0f-9d88-53f5-9e62-640dfbe5f693",
+            "labels": [
+              "N6  PoE-camera’s"
+            ],
+            "source": {
+              "cell": "92835617-c15b-5cd2-88b5-7155e9f7ea72"
+            },
+            "target": {
+              "cell": "cba08998-ec6b-589c-a559-688e820b0a7f"
+            },
+            "vertices": [
+              {
+                "x": 1045,
+                "y": 747
+              },
+              {
+                "x": 1045,
+                "y": 1096
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N6  PoE-camera’s",
+              "description": "Twee PoE-camera’s achter de switch volgens de schets. Niet technisch gecontroleerd.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Deze verbinding is nog niet bevestigd in de actuele workflow.",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": "7 5"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "ff73e250-bcb6-5bef-9540-cb2351aef98f",
+            "labels": [
+              "N7  Bedraad (nog controleren)"
+            ],
+            "source": {
+              "cell": "92835617-c15b-5cd2-88b5-7155e9f7ea72"
+            },
+            "target": {
+              "cell": "f7ff0f4d-7b78-587b-9162-bddf36173afd"
+            },
+            "vertices": [
+              {
+                "x": 1005,
+                "y": 747
+              },
+              {
+                "x": 1005,
+                "y": 1415
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N7  Bedraad (nog controleren)",
+              "description": "Cloud Key is volgens de eigenaar bedraad aangesloten. De precieze poort en route zijn niet bevestigd.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Deze verbinding is nog niet bevestigd in de actuele workflow.",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "d3123e64-0094-5587-8a0d-331cbf0768f2",
+            "labels": [
+              "Pi-hole op NAS"
+            ],
+            "source": {
+              "cell": "4f3e60bc-979d-5c0a-9db4-70ad4607bf2c"
+            },
+            "target": {
+              "cell": "490c81e0-70ad-5595-a382-a2d36f5e74cd"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Pi-hole op NAS",
+              "description": "Pi-hole draait op de NAS volgens het aangeleverde model.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": "7 5"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "a075c766-043a-55fd-b6bb-5768b83a60b0",
+            "labels": [
+              "N9  DNS-doel"
+            ],
+            "source": {
+              "cell": "dacafcde-4989-5c29-a382-ebe07d58e379"
+            },
+            "target": {
+              "cell": "490c81e0-70ad-5595-a382-a2d36f5e74cd"
+            },
+            "vertices": [
+              {
+                "x": 290,
+                "y": 1535
+              },
+              {
+                "x": 1582,
+                "y": 1535
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "N9  DNS-doel",
+              "description": "In de aangeleverde schets wijst AmpliFi naar Pi-hole als DNS. Werkelijke instelling nog te controleren.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Deze verbinding is nog niet bevestigd in de actuele workflow.",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          }
+        ],
+        "placeholder": ""
+      },
+      {
+        "title": "02 - n8n gegevensstromen",
+        "description": "Gmail, openbare bronnen, lokale AI en opslag naar externe diensten. F2 en F5 hebben aparte vraag- en antwoordrichtingen. Telegram is in de export van juli niet aangetroffen en blijft als open punt aangegeven.",
+        "thumbnail": "",
+        "diagramType": "STRIDE",
+        "id": 1,
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 55,
+              "y": 130
+            },
+            "size": {
+              "width": 445,
+              "height": 1330
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Buiten"
+              }
+            },
+            "id": "a18cc13a-638b-5243-bc90-bd71f2d59e23",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Buiten",
+              "description": "Externe gegevens en diensten: gegevens zijn niet automatisch vertrouwd.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 560,
+              "y": 100
+            },
+            "size": {
+              "width": 1590,
+              "height": 1390
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "NAS"
+              }
+            },
+            "id": "087b2f40-1318-5b60-8201-fd24542631ab",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "NAS",
+              "description": "n8n-processen op NAS. Werkelijke rechten verschillen per koppeling en stap.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 2220,
+              "y": 130
+            },
+            "size": {
+              "width": 500,
+              "height": 1330
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Ontvangers"
+              }
+            },
+            "id": "d09fd1c4-56e8-5d89-8988-c92ee5e854a0",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Ontvangers",
+              "description": "Externe opslag en aflevering. Deze diensten zijn geen testdoel.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 145,
+              "y": 300
+            },
+            "size": {
+              "width": 255,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Gmail\nnieuwe berichten"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "a3815b83-6c5e-5c8c-8276-0f7dbc41b847",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Gmail nieuwe berichten",
+              "description": "Gmail-berichten kunnen de hoofdworkflow starten; bevestigd in de opgeslagen workflowexport.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 145,
+              "y": 745
+            },
+            "size": {
+              "width": 255,
+              "height": 106
+            },
+            "attrs": {
+              "text": {
+                "text": "Websites en RSS\nopenbare bronnen"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "ce5d57eb-d71c-57fa-9111-e437203e14e6",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Websites en RSS openbare bronnen",
+              "description": "Bronnen zoals webpagina’s, documenten en RSS-feeds. De broncontrole gebruikt een lijst toegestane domeinen.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 145,
+              "y": 1230
+            },
+            "size": {
+              "width": 255,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Telegram\nprivéchat"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "afe4db59-b7a4-5f58-b6d4-3b7dce96d996",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Telegram privéchat",
+              "description": "Opgenomen in het door de eigenaar aangeleverde model. In drie exports van juli is geen Telegram-stap gevonden. Actuele koppeling nog controleren.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 690,
+              "y": 300
+            },
+            "size": {
+              "width": 250,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Gmail-stap\nberichten ophalen"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "4d78ee0b-08f6-5dae-82aa-51168ddd4787",
+            "data": {
+              "type": "tm.Process",
+              "name": "Gmail-stap berichten ophalen",
+              "description": "Gmail Trigger; aangetroffen in de export van juli.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 690,
+              "y": 745
+            },
+            "size": {
+              "width": 250,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Bronnen ophalen\nHTTP en RSS"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "4af3f28a-4034-50e5-a904-9566cdd01604",
+            "data": {
+              "type": "tm.Process",
+              "name": "Bronnen ophalen HTTP en RSS",
+              "description": "Workflowstappen met HTTP-verzoeken, RSS-invoer en controle van toegestane domeinen.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "545e4e0a-fe7a-5e25-b902-939a05a7c87e",
+                  "number": 4,
+                  "title": "T-04 Onbetrouwbare bron verandert uitkomst",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "Een valse of gewijzigde bron kan de inhoud van een samenvatting beïnvloeden. Dit is nog niet getest. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Controleer herkomst en toegestane websites; behandel web- en e-mailinhoud als niet-vertrouwd.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 690,
+              "y": 1230
+            },
+            "size": {
+              "width": 250,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Telegram-stap\nnog controleren"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "0ec25193-6bfc-570c-9510-ac345378ac5f",
+            "data": {
+              "type": "tm.Process",
+              "name": "Telegram-stap nog controleren",
+              "description": "Schematische weergave van het oude model; niet bevestigd in het nieuwe archief. Niet als werkelijk uitgevoerde stap beschouwen.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1310,
+              "y": 745
+            },
+            "size": {
+              "width": 260,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "n8n workflows\nverwerken"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "d3191aed-ed22-5856-887a-adc411d13d42",
+            "data": {
+              "type": "tm.Process",
+              "name": "n8n workflows verwerken",
+              "description": "Hoofdworkflow met verwerking, data en eigen code. Dit is een model van het proces, niet een bewijs dat alle routes actief zijn.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "10683fea-1081-5b19-bd37-9f912b5c8d56",
+                  "number": 3,
+                  "title": "T-03 Workflow of ontvanger gewijzigd",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "description": "Iemand met te veel rechten wijzigt mogelijk een workflow of een ontvanger. Er is geen onbevoegde wijziging aangetoond. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Beperk wijzigingsrechten, leg wijzigingen vast en controleer belangrijke ontvangers.",
+                  "score": "",
+                  "new": false
+                },
+                {
+                  "id": "9f1faa19-fd0b-507c-a04b-9df7dccc222e",
+                  "number": 9,
+                  "title": "T-09 Van n8n naar meer rechten",
+                  "type": "Elevation of privilege",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "description": "Een persoon met toegang tot workflows krijgt mogelijk ook toegang tot gekoppelde diensten of instellingen. De aanvalsketen is niet uitgevoerd. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Scheid beheerrechten, API-rechten en containerrechten; gebruik een losse veilige testomgeving.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1850,
+              "y": 745
+            },
+            "size": {
+              "width": 235,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "n8n\nversturen"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "29047ea4-5057-5445-a051-4d506c2852cd",
+            "data": {
+              "type": "tm.Process",
+              "name": "n8n versturen",
+              "description": "Versturen van documenten of samenvattingen naar gekoppelde diensten.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1850,
+              "y": 1180
+            },
+            "size": {
+              "width": 235,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Ollama\nlokale AI"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "c86b866c-1a7b-52b5-85f0-aa09fdec061b",
+            "data": {
+              "type": "tm.Process",
+              "name": "Ollama lokale AI",
+              "description": "Lokaal AI-model op de NAS. In het eerdere netwerkonderzoek via NAS-poort 32769 bereikbaar.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "48eed455-e034-5739-a742-c1e421cd60b6",
+                  "number": 8,
+                  "title": "T-08 NAS of AI-dienst raakt overbelast",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "Veel opdrachten kunnen de dienst vertragen of laten stoppen. Er is geen belastingstest uitgevoerd. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Controleer limieten en herstelmogelijkheden zonder de gewone omgeving te belasten.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 2330,
+              "y": 320
+            },
+            "size": {
+              "width": 270,
+              "height": 106
+            },
+            "attrs": {
+              "text": {
+                "text": "Gmail\nuitgaande mail"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "d9d315bf-ff8e-5168-99b5-637805ed9359",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Gmail uitgaande mail",
+              "description": "Uitgaande e-mail met samenvattingen naar vooraf ingestelde ontvangers; controleer de feitelijke bestemming.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 2330,
+              "y": 775
+            },
+            "size": {
+              "width": 270,
+              "height": 106
+            },
+            "attrs": {
+              "text": {
+                "text": "Google Drive\ndocumenten"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "53a028d2-86cd-5413-9e67-220b5fcf778a",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Google Drive documenten",
+              "description": "Openbare documenten en resultaten worden volgens het model en de exports in Google Drive opgeslagen.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "d80addfc-b593-5f12-99c4-38754acefba2",
+            "labels": [
+              "F1  Nieuw bericht"
+            ],
+            "source": {
+              "cell": "a3815b83-6c5e-5c8c-8276-0f7dbc41b847"
+            },
+            "target": {
+              "cell": "4d78ee0b-08f6-5dae-82aa-51168ddd4787"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1  Nieuw bericht",
+              "description": "Nieuwe Gmail-berichten kunnen de workflow starten.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "0e683514-3f67-501f-8ef6-97edc580811b",
+            "labels": [
+              "Bericht verwerken"
+            ],
+            "source": {
+              "cell": "4d78ee0b-08f6-5dae-82aa-51168ddd4787"
+            },
+            "target": {
+              "cell": "d3191aed-ed22-5856-887a-adc411d13d42"
+            },
+            "vertices": [
+              {
+                "x": 1440,
+                "y": 355
+              },
+              {
+                "x": 1440,
+                "y": 685
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Bericht verwerken",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "6b8ca316-635c-5981-9ed6-bd98ba2a45de",
+            "labels": [
+              "F2a  Bron opvragen"
+            ],
+            "source": {
+              "cell": "4af3f28a-4034-50e5-a904-9566cdd01604"
+            },
+            "target": {
+              "cell": "ce5d57eb-d71c-57fa-9111-e437203e14e6"
+            },
+            "vertices": [
+              {
+                "x": 575,
+                "y": 800
+              },
+              {
+                "x": 575,
+                "y": 910
+              },
+              {
+                "x": 490,
+                "y": 910
+              },
+              {
+                "x": 490,
+                "y": 798
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2a  Bron opvragen",
+              "description": "n8n doet een HTTP-verzoek aan een openbare bron of leest een RSS-feed.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "4f86139b-48e4-589c-8f50-4b42ad1b84fd",
+            "labels": [
+              "F2b  Bron ontvangen"
+            ],
+            "source": {
+              "cell": "ce5d57eb-d71c-57fa-9111-e437203e14e6"
+            },
+            "target": {
+              "cell": "4af3f28a-4034-50e5-a904-9566cdd01604"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2b  Bron ontvangen",
+              "description": "De openbare bron geeft een pagina, document of RSS-inhoud terug.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "553e777a-6ea5-59ba-a3fa-546d0fe20519",
+            "labels": [
+              "Opgehaalde inhoud"
+            ],
+            "source": {
+              "cell": "4af3f28a-4034-50e5-a904-9566cdd01604"
+            },
+            "target": {
+              "cell": "d3191aed-ed22-5856-887a-adc411d13d42"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Opgehaalde inhoud",
+              "description": "De opgehaalde inhoud wordt verder verwerkt.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": "7 5"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "41cfdc19-70d7-5cd8-8a61-a8d368fe8e29",
+            "labels": [
+              "F5a  Opdracht ontvangen"
+            ],
+            "source": {
+              "cell": "afe4db59-b7a4-5f58-b6d4-3b7dce96d996"
+            },
+            "target": {
+              "cell": "0ec25193-6bfc-570c-9510-ac345378ac5f"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F5a  Opdracht ontvangen",
+              "description": "Nog na te gaan in de actuele Telegram-workflow; niet bevestigd in de drie opgeslagen exports.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Deze verbinding is nog niet bevestigd in de actuele workflow.",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": "7 5"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "1aac0a15-723c-55d8-9962-4a72eba5599b",
+            "labels": [
+              "F5b  Antwoord terug"
+            ],
+            "source": {
+              "cell": "0ec25193-6bfc-570c-9510-ac345378ac5f"
+            },
+            "target": {
+              "cell": "afe4db59-b7a4-5f58-b6d4-3b7dce96d996"
+            },
+            "vertices": [
+              {
+                "x": 545,
+                "y": 1285
+              },
+              {
+                "x": 545,
+                "y": 1410
+              },
+              {
+                "x": 450,
+                "y": 1410
+              },
+              {
+                "x": 450,
+                "y": 1280
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F5b  Antwoord terug",
+              "description": "Nog na te gaan: eventuele status of antwoord naar privéchat.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Deze verbinding is nog niet bevestigd in de actuele workflow.",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": "7 5"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "9673e161-a965-5cf3-9a83-512327a576dd",
+            "labels": [
+              "Opdracht naar n8n (open)"
+            ],
+            "source": {
+              "cell": "0ec25193-6bfc-570c-9510-ac345378ac5f"
+            },
+            "target": {
+              "cell": "d3191aed-ed22-5856-887a-adc411d13d42"
+            },
+            "vertices": [
+              {
+                "x": 1440,
+                "y": 1285
+              },
+              {
+                "x": 1440,
+                "y": 920
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Opdracht naar n8n (open)",
+              "description": "Alleen context uit het oudere schema; exacte verwerking nog niet bevestigd.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Deze verbinding is nog niet bevestigd in de actuele workflow.",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "7114159c-37d7-5db7-bc10-1f53bab88dcf",
+            "labels": [
+              "Samenvatting"
+            ],
+            "source": {
+              "cell": "d3191aed-ed22-5856-887a-adc411d13d42"
+            },
+            "target": {
+              "cell": "29047ea4-5057-5445-a051-4d506c2852cd"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Samenvatting",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "8122d94f-c525-58fc-9a12-eb20625e307e",
+            "labels": [
+              "F3  Document opslaan"
+            ],
+            "source": {
+              "cell": "29047ea4-5057-5445-a051-4d506c2852cd"
+            },
+            "target": {
+              "cell": "53a028d2-86cd-5413-9e67-220b5fcf778a"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F3  Document opslaan",
+              "description": "Drive-acties zijn aanwezig in de oudere exports.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "9a857703-15eb-5208-ad58-8409c9864fde",
+            "labels": [
+              "F4  Samenvatting mailen"
+            ],
+            "source": {
+              "cell": "29047ea4-5057-5445-a051-4d506c2852cd"
+            },
+            "target": {
+              "cell": "d9d315bf-ff8e-5168-99b5-637805ed9359"
+            },
+            "vertices": [
+              {
+                "x": 2160,
+                "y": 800
+              },
+              {
+                "x": 2160,
+                "y": 373
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F4  Samenvatting mailen",
+              "description": "Gmail-verzendstappen in de oudere exports. Ontvangers zijn bewust weggelaten.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "c65795b0-b570-5f6a-a336-bd09fe970fa6",
+            "labels": [
+              "F6  Vraag aan lokale AI"
+            ],
+            "source": {
+              "cell": "d3191aed-ed22-5856-887a-adc411d13d42"
+            },
+            "target": {
+              "cell": "c86b866c-1a7b-52b5-85f0-aa09fdec061b"
+            },
+            "vertices": [
+              {
+                "x": 1600,
+                "y": 810
+              },
+              {
+                "x": 1600,
+                "y": 1235
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F6  Vraag aan lokale AI",
+              "description": "HTTP-verzoek richting Ollama. Test de werkelijke verbinding en bereikbaarheid.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          }
+        ],
+        "placeholder": ""
+      },
+      {
+        "title": "03 - Toegang en opslag",
+        "description": "Beheer via Tailscale, QuickConnect, MCP/API en de gegevens binnen de n8n-container. F8 laat lezen van containerwaarden zien, niet het wijzigen ervan. Menselijke aanmelding, API-sleutel en webhook zijn apart weergegeven.",
+        "thumbnail": "",
+        "diagramType": "STRIDE",
+        "id": 2,
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 70,
+              "y": 125
+            },
+            "size": {
+              "width": 465,
+              "height": 1340
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Eigen apparaten"
+              }
+            },
+            "id": "c0545bec-89a2-5faf-b5b5-aea12eb3ed3f",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Eigen apparaten",
+              "description": "Eigen apparaten en externe gebruikers. Geen toestemming om andermans systemen te testen.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 565,
+              "y": 125
+            },
+            "size": {
+              "width": 925,
+              "height": 1340
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Toegang"
+              }
+            },
+            "id": "7b0daa98-db13-5fb1-9092-3b8ca9b8f22e",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Toegang",
+              "description": "Toegang via verschillende routes, met ieder eigen controle.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1515,
+              "y": 125
+            },
+            "size": {
+              "width": 1265,
+              "height": 1390
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "NAS"
+              }
+            },
+            "id": "06ad265d-e7c3-523b-a8e1-2501c0edd2ce",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "NAS",
+              "description": "Synology NAS en containers, met opslag en instellingen.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 145,
+              "y": 240
+            },
+            "size": {
+              "width": 255,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Eigen beheer-\napparaten"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "810232b4-585d-5f36-862c-23e31db56224",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Eigen beheer- apparaten",
+              "description": "Eigen beheerapparaten; toegang via het Tailscale-netwerk.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 640,
+              "y": 240
+            },
+            "size": {
+              "width": 260,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Tailscale\ntoegangsregels"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "911437e4-d3d9-5453-97c5-79d61848c9f5",
+            "data": {
+              "type": "tm.Process",
+              "name": "Tailscale toegangsregels",
+              "description": "Tailscale bepaalt welke apparaten verbinding mogen maken. Brede regel bevestigd; toegang per apparaat moet nog worden gecontroleerd.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "8079229f-1570-5bcb-b4af-f6953be1484e",
+                  "number": 1,
+                  "title": "T-01 Onbekend Tailscale-apparaat",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "description": "Een overgenomen of nieuw apparaat probeert NAS-diensten te bereiken. De brede toegangsregel is bevestigd, maar toegang per apparaat is niet getest. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Beperk de Tailscale-regels tot de benodigde apparaten en diensten; controleer toegestane en geweigerde toegang.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1110,
+              "y": 240
+            },
+            "size": {
+              "width": 265,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Tailscale Serve\n8443 naar 5678"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "a95e47e1-a258-5526-b83d-7a3c3a52846b",
+            "data": {
+              "type": "tm.Process",
+              "name": "Tailscale Serve 8443 naar 5678",
+              "description": "In het onderzoek bevestigd: Tailscale Serve stuurt 8443 door naar n8n op poort 5678. Funnel staat uit.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1690,
+              "y": 240
+            },
+            "size": {
+              "width": 265,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "n8n web\naanmelden"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "8cadc171-1e22-5457-b825-35599deaa5d9",
+            "data": {
+              "type": "tm.Process",
+              "name": "n8n web aanmelden",
+              "description": "Aanmelden als gebruiker is een andere toegangsroute dan een API-sleutel. Owneraccount heeft geen tweede factor.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "53afdaaf-8462-5521-8a2c-50faf124a1a1",
+                  "number": 12,
+                  "title": "T-12 Owneraccount zonder tweede controle",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "Als het wachtwoord wordt gestolen, is er geen tweede inlogstap. De instelling is gecontroleerd; er is niet ingelogd als aanvaller. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Zet tweestapsverificatie aan en bewaar herstelcodes veilig.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 145,
+              "y": 585
+            },
+            "size": {
+              "width": 255,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Eigen gebruiker\nbuitenhuis"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "fa361ad4-96a0-5e2a-9dee-e125ea02246b",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Eigen gebruiker buitenhuis",
+              "description": "Eigen gebruiker via mobiel of andere eigen verbinding. Externe bereikbaarheid nog niet gemeten.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 640,
+              "y": 585
+            },
+            "size": {
+              "width": 260,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Synology\nQuickConnect"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "97760c70-13f6-5766-892e-6e510f69b503",
+            "data": {
+              "type": "tm.Process",
+              "name": "Synology QuickConnect",
+              "description": "QuickConnect: meerdere diensttypen ingeschakeld. Externe bereikbaarheid van DSM nog te testen.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "ec6619bc-ad00-595d-a037-7c90aa2ff4f1",
+                  "number": 13,
+                  "title": "T-13 QuickConnect vanaf buiten",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "QuickConnect-diensten staan aan. Of de DSM-aanmelding daadwerkelijk vanaf internet bereikbaar is, is nog onbekend. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Controleer dit met het eigen mobiele netwerk en eigen account, zonder een aanval uit te voeren.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1110,
+              "y": 585
+            },
+            "size": {
+              "width": 265,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "DSM-beheer"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "84b32b02-fa49-5851-bcf5-d15c92ee94b1",
+            "data": {
+              "type": "tm.Process",
+              "name": "DSM-beheer",
+              "description": "Beheerinterface van de NAS. Een ingeschakelde QuickConnect-functie bewijst nog geen ongeoorloofde toegang.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 145,
+              "y": 915
+            },
+            "size": {
+              "width": 255,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "MCP-koppeling\nbeheerprogramma"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "1baf2c23-cdb1-5b31-aba1-d33f4f3f2842",
+            "data": {
+              "type": "tm.Actor",
+              "name": "MCP-koppeling beheerprogramma",
+              "description": "Eigen MCP-client op apart Docker-netwerk, volgens onderzoek gekoppeld aan n8n via HTTP.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 640,
+              "y": 915
+            },
+            "size": {
+              "width": 260,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "n8n API\nmet toegangssleutel"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "87048687-5bf8-5fee-9b53-e04d4d7c2e30",
+            "data": {
+              "type": "tm.Process",
+              "name": "n8n API met toegangssleutel",
+              "description": "API-aanmelding met een eigen sleutel, los van de normale browser-login. Sleutelrechten zijn geteld; de sleutel zelf is niet gekopieerd.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "915852dd-1194-5cb8-998b-0e37d07a40a0",
+                  "number": 2,
+                  "title": "T-02 API-sleutel in verkeerde handen",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "description": "Een ander krijgt mogelijk toegang tot n8n als een API-sleutel uitlekt. De 74 rechten zijn vastgesteld; misbruik niet getest. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Test een tijdelijke sleutel met minder rechten en vervang de brede sleutel pas na een geslaagde controle.",
+                  "score": "",
+                  "new": false
+                },
+                {
+                  "id": "05bb3540-6596-5cd3-805d-a9f1a3e94fa8",
+                  "number": 5,
+                  "title": "T-05 Beheeractie niet terug te vinden",
+                  "type": "Repudiation",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "Achteraf is misschien niet vast te stellen wie een workflow heeft gewijzigd; wat precies wordt gelogd, is nog onbekend. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Controleer welke beheerhandelingen worden vastgelegd en bewaar de relevante gegevens veilig.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1110,
+              "y": 915
+            },
+            "size": {
+              "width": 265,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Workflows\nbekijken en wijzigen"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "386f4c99-2dfd-59dd-be24-13d788c91f39",
+            "data": {
+              "type": "tm.Process",
+              "name": "Workflows bekijken en wijzigen",
+              "description": "De onderzochte MCP-code gebruikt onder andere functies om workflows op te vragen en te wijzigen.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1690,
+              "y": 915
+            },
+            "size": {
+              "width": 265,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "n8n\nworkflows"
+              },
+              "body": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "7eb5d7c0-4383-5cce-9171-d89ca42d7e1f",
+            "data": {
+              "type": "tm.Process",
+              "name": "n8n workflows",
+              "description": "Werkende n8n-workflows; geen onbevoegde wijzigingen of nieuwe live tests uitgevoerd.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 2320,
+              "y": 915
+            },
+            "size": {
+              "width": 275,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "PostgreSQL\nworkflowgegevens"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 15,
+            "id": "bd261ece-9525-55e2-9eaa-3205321fdb45",
+            "data": {
+              "type": "tm.Store",
+              "name": "PostgreSQL workflowgegevens",
+              "description": "n8n-workflows, uitvoergegevens en verwijzingen naar toegangsgegevens. Geen rechtstreekse NAS-poort voor database. Geen geheime inhoud bekeken.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "864a8d4b-dde3-5103-820e-b76b57d49fba",
+                  "number": 11,
+                  "title": "T-11 Te veel gegevens bewaren of delen",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "Persoonlijke inhoud kan langer blijven staan of op de verkeerde plek belanden. Werkelijke bewaartermijnen zijn niet vastgesteld. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Leg vast wat bewaard en verzonden wordt, naar wie en voor hoelang.",
+                  "score": "",
+                  "new": false
+                }
+              ],
+              "isALog": false,
+              "storesCredentials": false
+            }
+          },
+          {
+            "position": {
+              "x": 145,
+              "y": 1260
+            },
+            "size": {
+              "width": 255,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Inkomend\nPOST-verzoek"
+              },
+              "body": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "6 4"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 15,
+            "id": "12a541f0-990f-5641-9d09-bf3ff11b19bc",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Inkomend POST-verzoek",
+              "description": "Inkomend bericht naar een POST-/webhookadres. Auth en invoercontrole per ingang moeten nog worden getest.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Externe dienst of nog te bevestigen koppeling; geen testdoel.",
+              "hasOpenThreats": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 640,
+              "y": 1260
+            },
+            "size": {
+              "width": 260,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "n8n webhook\nPOST-ingang"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "90838b60-2f85-5bd8-9299-02533b1bb475",
+            "data": {
+              "type": "tm.Process",
+              "name": "n8n webhook POST-ingang",
+              "description": "POST-ingangen apart van de normale login en de MCP-API. Bescherming en eventuele wijzigbaarheid nog te controleren.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "8d58a590-be42-5169-b452-3662b52c16ab",
+                  "number": 10,
+                  "title": "T-10 POST-ingang zonder goede controle",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "description": "Een inkomend verzoek kan mogelijk ongewenst een status of workflow aanpassen. De bescherming van de ingang is nog niet gecontroleerd. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Controleer of verzoeken gecontroleerd worden en of alleen bevoegden wijzigingen mogen doen.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1690,
+              "y": 1260
+            },
+            "size": {
+              "width": 265,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Code-stappen\nin n8n"
+              },
+              "body": {
+                "stroke": "#AD433E",
+                "strokeWidth": 2,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 15,
+            "id": "b016d8c2-dae2-5d7c-9443-69c6a867f9ac",
+            "data": {
+              "type": "tm.Process",
+              "name": "Code-stappen in n8n",
+              "description": "In sommige workflows wordt eigen code uitgevoerd. F-03 is getest in een aparte kopie zonder echte geheimen.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "e3145994-591d-5e7e-a4a4-5d006c8b30d6",
+                  "number": 6,
+                  "title": "T-06 Code kan containerwaarden lezen",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "description": "In een losse testkopie is via $env een onschuldige waarde gelezen. Geheime waarden zijn niet bekeken. Dit is een mogelijk scenario en niet automatisch een bewezen aanval.",
+                  "mitigation": "Controleer de workflows die $env gebruiken, pas ze aan en blokkeer deze toegang daarna waar mogelijk.",
+                  "score": "",
+                  "new": false
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 2320,
+              "y": 1260
+            },
+            "size": {
+              "width": 275,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Containerwaarden\n$env"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 15,
+            "id": "bb1616a0-a134-5436-9b38-b54a70c7b62b",
+            "data": {
+              "type": "tm.Store",
+              "name": "Containerwaarden $env",
+              "description": "Instellingen, waaronder mogelijk gevoelige waarden, die aan n8n worden doorgegeven. Alleen een onschuldige marker is in een testkopie uitgelezen.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "threats": [],
+              "isALog": false,
+              "storesCredentials": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "2b892330-942e-5213-8ab1-814c848d0a45",
+            "labels": [
+              "F9  Eigen toegang"
+            ],
+            "source": {
+              "cell": "810232b4-585d-5f36-862c-23e31db56224"
+            },
+            "target": {
+              "cell": "911437e4-d3d9-5453-97c5-79d61848c9f5"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F9  Eigen toegang",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "c3df1031-e741-5234-bc8e-d684fa793f2f",
+            "labels": [
+              "F10  Tailnet naar NAS"
+            ],
+            "source": {
+              "cell": "911437e4-d3d9-5453-97c5-79d61848c9f5"
+            },
+            "target": {
+              "cell": "a95e47e1-a258-5526-b83d-7a3c3a52846b"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F10  Tailnet naar NAS",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "f6e3fd78-713d-5eb7-a68a-841c4191307c",
+            "labels": [
+              "n8n via Serve"
+            ],
+            "source": {
+              "cell": "a95e47e1-a258-5526-b83d-7a3c3a52846b"
+            },
+            "target": {
+              "cell": "8cadc171-1e22-5457-b825-35599deaa5d9"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "n8n via Serve",
+              "description": "Tailscale Serve; eigenaar kan n8n openen zonder dat Funnel is ingeschakeld.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": "7 5"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "696f4953-49d5-535a-8884-56b36838fac0",
+            "labels": [
+              "QuickConnect (controleren)"
+            ],
+            "source": {
+              "cell": "fa361ad4-96a0-5e2a-9dee-e125ea02246b"
+            },
+            "target": {
+              "cell": "97760c70-13f6-5766-892e-6e510f69b503"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "QuickConnect (controleren)",
+              "description": "Externe toegang tot DSM vanuit eigen mobiele verbinding nog niet bevestigd.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Deze verbinding is nog niet bevestigd in de actuele workflow.",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#8EA0AB",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": "7 5"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "4b5bf8d3-d845-5941-929a-47affa5671b0",
+            "labels": [
+              "DSM via QuickConnect"
+            ],
+            "source": {
+              "cell": "97760c70-13f6-5766-892e-6e510f69b503"
+            },
+            "target": {
+              "cell": "84b32b02-fa49-5851-bcf5-d15c92ee94b1"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "DSM via QuickConnect",
+              "description": "Aangeboden toegang volgens de configuratie; daadwerkelijke externe aanmelding niet getest.",
+              "outOfScope": true,
+              "reasonOutOfScope": "Deze verbinding is nog niet bevestigd in de actuele workflow.",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "448fcf43-adff-5979-a8c1-e938a369c717",
+            "labels": [
+              "F12  API-verzoek + sleutel"
+            ],
+            "source": {
+              "cell": "1baf2c23-cdb1-5b31-aba1-d33f4f3f2842"
+            },
+            "target": {
+              "cell": "87048687-5bf8-5fee-9b53-e04d4d7c2e30"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F12  API-verzoek + sleutel",
+              "description": "MCP gebruikt HTTP en een eigen n8n API-sleutel; de sleutel zelf is niet bekeken.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "35e13ef9-874b-5e16-92db-3c2d81fe8b2d",
+            "labels": [
+              "G1  Beheeractie"
+            ],
+            "source": {
+              "cell": "87048687-5bf8-5fee-9b53-e04d4d7c2e30"
+            },
+            "target": {
+              "cell": "386f4c99-2dfd-59dd-be24-13d788c91f39"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "G1  Beheeractie",
+              "description": "Workflowbeheer volgens de bekeken API-code.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "a01d135a-6919-5b66-999b-21c3aa7b6226",
+            "labels": [
+              "Workflowactie"
+            ],
+            "source": {
+              "cell": "386f4c99-2dfd-59dd-be24-13d788c91f39"
+            },
+            "target": {
+              "cell": "7eb5d7c0-4383-5cce-9171-d89ca42d7e1f"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Workflowactie",
+              "description": "Werkelijke inzet of wijziging alleen als bevoegd; geen aanval getest.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "38e8f90b-7959-5a3e-8fe5-78adb0f7e84c",
+            "labels": [
+              "F7  Workflowgegevens"
+            ],
+            "source": {
+              "cell": "7eb5d7c0-4383-5cce-9171-d89ca42d7e1f"
+            },
+            "target": {
+              "cell": "bd261ece-9525-55e2-9eaa-3205321fdb45"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F7  Workflowgegevens",
+              "description": "Workflows en gegevens in PostgreSQL; dit bewijst geen toegang tot geheime inhoud.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "0418c248-0b20-521d-82e8-6a1187d1a859",
+            "labels": [
+              "POST  Inkomend bericht"
+            ],
+            "source": {
+              "cell": "12a541f0-990f-5641-9d09-bf3ff11b19bc"
+            },
+            "target": {
+              "cell": "90838b60-2f85-5bd8-9299-02533b1bb475"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "POST  Inkomend bericht",
+              "description": "Inkomend verzoek naar webhook, apart van de menselijke login en de MCP-koppeling.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "09c489b1-6c47-5d96-bf30-bb62fee25251",
+            "labels": [
+              "G2  Workflowcode"
+            ],
+            "source": {
+              "cell": "b016d8c2-dae2-5d7c-9443-69c6a867f9ac"
+            },
+            "target": {
+              "cell": "7eb5d7c0-4383-5cce-9171-d89ca42d7e1f"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "G2  Workflowcode",
+              "description": "Code-nodes werken binnen n8n; in een aparte testkopie is de $env-route getest.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#354F63",
+                "strokeWidth": 1.6,
+                "targetMarker": {
+                  "name": "classic"
+                },
+                "sourceMarker": "",
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 7,
+            "connector": "normal",
+            "id": "f06694eb-d8c0-532c-8586-87617d61de3b",
+            "labels": [
+              "F8  Instellingen lezen"
+            ],
+            "source": {
+              "cell": "bb1616a0-a134-5436-9b38-b54a70c7b62b"
+            },
+            "target": {
+              "cell": "b016d8c2-dae2-5d7c-9443-69c6a867f9ac"
+            },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F8  Instellingen lezen",
+              "description": "De richting is van containerwaarden naar code. Dit betekent niet dat bestanden of instellingen worden gewijzigd.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "isBidirectional": false,
+              "hasOpenThreats": false,
+              "threats": [],
+              "protocol": ""
+            }
+          }
+        ],
+        "placeholder": ""
+      }
+    ],
+    "diagramTop": 3,
+    "threatTop": 14
+  }
+}
